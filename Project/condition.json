@@ -1,0 +1,59 @@
+{
+    "name": "IfCondition",
+    "type": "IfCondition",
+    "dependsOn": [
+        {
+            "activity": "LookupActivity",
+            "dependencyConditions": ["Succeeded"]
+        }
+    ],
+    "typeProperties": {
+        "expression": {
+            "value": "@greater(activity('LookupActivity').output.firstRow.recordCount, 500)",
+            "type": "Expression"
+        },
+        "ifTrueActivities": [
+            {
+                "name": "CopyCustomerData",
+                "type": "Copy",
+                "dependsOn": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "AzureSqlSource"
+                    },
+                    "sink": {
+                        "type": "AzureBlobStorageSink"
+                    },
+                    "dataIntegrationUnits": 4,
+                    "enableStaging": false
+                },
+                "inputs": [
+                    {
+                        "referenceName": "CustomerDataset",
+                        "type": "DatasetReference"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "ADLSCustomerDataset",
+                        "type": "DatasetReference"
+                    }
+                ]
+            },
+            {
+                "name": "ExecuteProductPipeline",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "ProductPipeline",
+                        "type": "PipelineReference"
+                    },
+                    "parameters": {
+                        "customerRecordCount": "@activity('LookupActivity').output.firstRow.recordCount"
+                    }
+                }
+            }
+        ]
+    }
+}

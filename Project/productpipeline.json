@@ -1,0 +1,53 @@
+{
+    "name": "ProductPipeline",
+    "properties": {
+        "activities": [
+            {
+                "name": "IfCondition",
+                "type": "IfCondition",
+                "dependsOn": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@greater(pipeline().parameters.customerRecordCount, 600)",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "CopyProductData",
+                            "type": "Copy",
+                            "dependsOn": [],
+                            "typeProperties": {
+                                "source": {
+                                    "type": "AzureSqlSource"
+                                },
+                                "sink": {
+                                    "type": "AzureBlobStorageSink"
+                                },
+                                "dataIntegrationUnits": 4,
+                                "enableStaging": false
+                            },
+                            "inputs": [
+                                {
+                                    "referenceName": "ProductDataset",
+                                    "type": "DatasetReference"
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "referenceName": "ADLSProductDataset",
+                                    "type": "DatasetReference"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "customerRecordCount": {
+                "type": "Int32",
+                "defaultValue": 0
+            }
+        }
+    }
+}

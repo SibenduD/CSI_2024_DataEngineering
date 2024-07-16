@@ -1,0 +1,23 @@
+{
+    "name": "TwiceDailyTrigger",
+    "properties": {
+        "description": "Trigger to run pipeline at 12:00 AM and 12:00 PM IST",
+        "type": "ScheduleTrigger",
+        "typeProperties": {
+            "recurrence": {
+                "frequency": "Hour",
+                "interval": 12,
+                "startTime": "2023-07-16T00:00:00Z",
+                "timeZone": "India Standard Time"
+            }
+        },
+        "pipelines": [
+            {
+                "pipelineReference": {
+                    "referenceName": "YourPipelineName",
+                    "type": "PipelineReference"
+                }
+            }
+        ]
+    }
+}

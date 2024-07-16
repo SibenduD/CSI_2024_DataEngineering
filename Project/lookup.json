@@ -1,0 +1,17 @@
+{
+    "name": "LookupActivity",
+    "type": "Lookup",
+    "dependsOn": [],
+    "policy": {},
+    "typeProperties": {
+        "source": {
+            "type": "AzureSqlSource",
+            "sqlReaderQuery": "SELECT COUNT(*) AS recordCount FROM Customer"
+        },
+        "dataset": {
+            "referenceName": "AzureSqlDataset",
+            "type": "DatasetReference"
+        },
+        "firstRowOnly": true
+    }
+}

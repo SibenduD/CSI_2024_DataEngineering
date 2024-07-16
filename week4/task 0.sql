@@ -1,0 +1,1 @@
+select h.hacker_id, h.name , sum(s.marks) as total from hackers h left join (select hacker_id,challenge_id,max(score) as marks from submissions group by hacker_id,challenge_id) s on h.hacker_id=s.hacker_id group by h.hacker_id,h.name having total > 0 order by total desc, h.hacker_id asc ;

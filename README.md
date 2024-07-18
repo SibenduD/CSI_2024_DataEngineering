@@ -16,13 +16,13 @@
 
 # WEEK5
 **Task Assigned**
-- `Advanced concept using existing SQL databases , Scheduling Triggers and using of Pielines to automate the process.`
+- `Advanced concept using existing SQL databases , Scheduling Triggers and using of Pipelines to automate the process.`
 - `Full task uploaded` [week5_task](https://github.com/SibenduD/CSI_2024_DataEngineering/tree/main/week5) `use the method to run the scheduler`
 
 # WEEK6
 **Task Assigned**
 - `Concept on ADF - Azure Data Factory`
-- `Configuring FTP and creating incremental Pipline to automate the given task.`
+- `Configuring FTP and creating incremental Pipeline to automate the given task.`
 - `Full task uploaded`  [week6_task](https://github.com/SibenduD/CSI_2024_DataEngineering/tree/main/week6) `do the same explained in the DOC`
 
 # WEEK7
